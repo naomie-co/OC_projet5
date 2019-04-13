@@ -1,4 +1,5 @@
 import requests
+import pymysql
 
 class API: 
 	def __init__(self): 
@@ -19,6 +20,11 @@ class API:
 		for val in result["products"]:
 			print("Nom:", val["product_name_fr"], "note nutritionnelle:", val["nutrition_grades"])
 		print(r.url)
+		print(result)
+
+
+#class DataBase(self):
+#	def __init__(self):
 
 
 test = API()
