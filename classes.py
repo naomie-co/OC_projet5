@@ -25,7 +25,7 @@ class API:
 		while i < 20:
 			for val in result["products"]:
 				try:
-					data.append([val["product_name_fr"], val["nutrition_grades"]])
+					data.append([val["product_name_fr"], val["nutrition_grades"], val["stores_tags"], val["url"]])
 				except KeyError:
 					pass
 				i += 1
@@ -60,9 +60,9 @@ class DB:
 			id int unsigned NOT NULL AUTO_INCREMENT,
 			nom varchar(200),
 			nutriscore varchar(1),
-			categorie varchar (200),
-			url varchar(500), 
-			PRIMARY KEY (id))
+			store varchar(10000),
+            url varchar(10000),                         
+            PRIMARY KEY (id))
 			"""
 			cursor.execute(sql)
 		self.connection2.commit()
@@ -85,7 +85,7 @@ class DB:
 		r = r.request_product("boisson")
 		with self.connection2.cursor() as cursor:
 			for value in r:
-				sql = "INSERT INTO opfood (nom, nutriscore) VALUES ('%s', '%s')" % (value[0], value[1])
+				sql = "INSERT INTO opfood (nom, nutriscore, store, url) VALUES ('%s', '%s', '%s', '%s')" % (value[0], value[1], value[2], value[3])
 				cursor.execute(sql)
 		self.connection2.commit()
 
@@ -93,18 +93,20 @@ class DB:
 		with self.connection2.cursor() as cursor:
 			sql = "SELECT * FROM opfood"
 			cursor.execute(sql)
-			print(cursor.fetchall())
+			rows = cursor.fetchall()
+			for row in rows:
+				print("{0} {1} {2} {3}".format(row[0], row[1], row[2], row[3]))
 
-class display:
+#class display:
 	
 
 
 r = API()
 
-r.request_product("farine")
+#r.request_product("farine")
 db1 = DB()
 #db1.createDB()
-db1.showDB()
+#db1.showDB()
 db1.dropOpfoodTable()
 db1.createTableOpfood()
 db1.describeTable()
