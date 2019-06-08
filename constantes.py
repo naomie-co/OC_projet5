@@ -1,3 +1,6 @@
+"""This file contains constants for the the food substitutes program"""
+
+#Used to offer categories to the user and to initiate requests
 CATEGORIES = ['Snacks', 'Boissons', 'Snacks sucrés', 'Plats préparés', \
 'Glaces', 'Sirops aromatisés', 'Flocons de céréales', 'Aliments pour bébé', \
 'Compotes de pommes', 'Sandwichs', 'Filets de poissons', 'Légumineuses en conserve', \

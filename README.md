@@ -1,20 +1,20 @@
 #OC Projet 5 - Trouver un substitut alimentaire
 
 
-##1 - création de l’environnement virtuel
+## 1 - création de l’environnement virtuel
 Ce programme est exécuté en Python et utilise également Mysql.
 Pour l'exécuter, il faut au préalable créer un environnement virtuel. 
 Une fois l'environnement virtuel créé, lancer l'installation de dépendances avec la commande:
-	pip install -r requirements.txt 
+    pip install -r requirements.txt 
 
-##2 - Création du fichier permettant la connexion. 
-L’exécution de la parties MySql du fichier nécessite la création au préalable d’un fichier **DB_info.py** qui contient les données de connexion suivantes : 
-	HOST = "YourHost"
-	USER = "YourUserName"
-	PASSWORD = "YourPassword"
-	DB = "off"
+## 2 - Création du fichier permettant la connexion. 
+L’exécution de la parties MySql du fichier nécessite la création au préalable d’un fichier ** DB_info.py ** qui contient les données de connexion suivantes : 
+    HOST = "YourHost"
+    USER = "YourUserName"
+    PASSWORD = "YourPassword"
+    DB = "off"
 
-##3 - Lancer le fichier main.py
+## 3 - Lancer le fichier main.py
 
 L'utilisateur est sur le terminal. Ce dernier lui affiche les choix suivants :
 

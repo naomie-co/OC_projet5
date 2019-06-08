@@ -29,7 +29,7 @@ class API:
 
     def request_product(self, tag):
         """Get products from the API depending on the tag in parameter.
-        Store the resulte in a list of list named data
+        Store the result in a list of list named data
         Return data """
         i = 0
         self.param["tag_0"] = tag
@@ -56,13 +56,11 @@ class DB:
     parameter, in opfood's table
     -def show_small_table(table): print the content of the rows 0 and 1 of the
     table passed in parameter
-    -def compare_nutriscore(nb_product): compares nutriscore's product passed in
-    parameter and proposes a better one, if possible
     -def compare_nutriscore(nb_product): compares nutriscore's product
     passed in parameter and proposes a better one (return True), if possible
-    (if not possible (return False)
-    -def save_substitute(): insert a substitute product into the
-    susbtitute's table
+    if not possible (return False)
+    -def save_substitute(): insert a substitute product in thesusbtitute's
+    table
     -def find_saved_product(): find saved products in the products's table
 """
     def __init__(self):
@@ -88,10 +86,10 @@ class DB:
         self.request = API()
 
     def insert(self, categorie_num):
-        """Insert products selected by category passed in parameter,
-        into opfood's table
+        """Insert products passed with a number in parameter in opfood's table
         """
-        #if the categorie is not already in the products table, adds new products
+        #if the categorie is not already in the products table
+        #adds new products
         if categorie_num not in self.categorie_searched:
             with self.connection.cursor() as cursor:
                 #To find the categorie passed as parameter
@@ -99,7 +97,8 @@ class DB:
                 categories.id = {}""").format(categorie_num)
                 cursor.execute(sql)
                 categorie_name = cursor.fetchall()
-                #send a request to the API by category passed in parameter
+                #send a request to the API from the category passed
+                #in parameter
                 for value in self.request.request_product(categorie_name):
                     try:
                         value_3 = value[3][0]
@@ -110,14 +109,14 @@ class DB:
                     (categorie_num, value[0], value[1], value[2], value_3, value[4])
                     cursor.execute(sql)
             self.connection.commit()
-        #add in variable the products already searched
+        #add in the variable the products already searched
         self.categorie_searched.append(categorie_num)
         #add in variable the current categorie
         self.nb_categorie = categorie_num
 
     def show_small_table(self, table):
-        """Print the content of the rows 0 and 1 of the table passed in
-        parameter"""
+        """Print the content of rows 0 and 1 of the table passed
+        in parameter"""
         with self.connection.cursor() as cursor:
             sql = "SELECT * FROM {0}".format(table)
             cursor.execute(sql)
@@ -138,7 +137,7 @@ class DB:
 
     def compare_nutriscore(self, nb_product):
         """Compares nutriscore's product passed in parameter and proposes a
-        better one (return True), if possible (if not possible (return False)
+        better one (return True) if possible (if not possible (return False)
         """
         with self.connection.cursor() as cursor:
             sql = ("SELECT * FROM opfood WHERE id_categorie = {}".format(self.nb_categorie))
@@ -160,7 +159,7 @@ class DB:
             if final_prod == 0:
                 print("Ce produit est déjà au top (toute proportion gardée)")
                 return False
-            #to print the better product and store a list of ids original
+            #Print the better product and store a list of id's original
             #and new products
             else:
                 self.product_keys = [nb_product, final_prod]
@@ -184,14 +183,15 @@ class DB:
                 print("Le produit est sauvegardé\n")
             #if the original product is already in the table
             except pymysql.err.IntegrityError:
-                print("Ce produit orignial est déjà sauvegardé\n")
+                print("Ce produit orignial est déjà sauvegardé, vous pouvez le \
+retrouver dans vos produits sauvegardés\n")
                 self.connection.commit()
 
 
     def find_saved_product(self):
         """Find saved products in the products's table"""
 
-        #Count used to print the number of a product
+        #Count used to print the number of the product which is printed
         product_count = 1
         #Request to find product in opfood's table form the original id stored
         #in the substitute table
@@ -203,7 +203,8 @@ class DB:
 
             #if there are no produits saved, print a message
             if original_product == ():
-                print("Aucun produit sauvegardé")
+                print("Aucun produit sauvegardé\n")
+
             #print the orginial product
             for index, row in enumerate(original_product):
                 print("\n", product_count, "Produit original: {0}\nNutriscore: {1}\
@@ -227,17 +228,20 @@ elt[3], elt[4], elt[5], elt[6]))
 class Display:
     """This class handle the Display's methods
         It contains the following methods:
-        -def start(): To start the programme
-        -def categorie(self): create and fill the categorie's table using the DB's methods,
-        prints its and store the categorie choose by the user into a variable
-        def substitute_search(self):
-        -Create and fill the product's table using the DB's methods,
-        prints its and store the product choose by the user into a variable
-        Use the DB's methode to compare nutrigrades to find a better product
-        Return the result of the compare_nutriscore's method (Boolean)
+        -def start(): questions asked in the menu
+        -def categorie(self): prints and store the categorie choose
+        by the user into a variable
+        -def substitute_search(self): create and fill the product's 
+        table using the DB's methods, prints its and store the product 
+        choose by the user into a variable. Use the DB's methode to compare
+        nutrigrades to find a better product. Return the result of the 
+        compare_nutriscore's method (Boolean)
         -def save_product(): to store the susbsitituted product or go back to
         the main menu
+        -def application(self): method to interact with the user. Called by 
+        the main.py file
         """
+
     def __init__(self):
         self.categorie_num = 0
         self.object = DB()
@@ -245,7 +249,7 @@ class Display:
         self.choose_start = 0
 
     def start(self):
-        """To start the programme"""
+        """To start the program, question's asked in the menu"""
 
         i = True
         while i:
@@ -260,8 +264,7 @@ Retrouver mes aliments substitués\n3 - Quitter\n Veuillez saisir un chiffre:")
                 continue
 
     def categorie(self):
-        """Create and fill the categorie's table using the DB's methods,
-        prints its and store the categorie choose by the user into a variable"""
+        """Prints and store the categorie choose by the user into a variable"""
 
         i = True
         while i:
@@ -292,7 +295,7 @@ Retrouver mes aliments substitués\n3 - Quitter\n Veuillez saisir un chiffre:")
                 #products's selected
                 id_products_selected = [elt[0] for elt in range_id]
                 print("Sélectionnez le produit en indiquant son chiffre pour\
-                trouver un produit mieux noté:")
+trouver un produit mieux noté:")
                 self.product_num = input()
                 self.product_num = int(self.product_num)
                 #check if the number wrote by the user is in the range of possible ids
@@ -327,10 +330,14 @@ Retrouver mes aliments substitués\n3 - Quitter\n Veuillez saisir un chiffre:")
         #Creates the database, tables and insert categories in categories table
         database.create_db_and_tables()
 
+
         application_loop = True
 
         while application_loop:
+            #main menu
             self.start()
+
+            #choose a product in categories and find a better product
             if self.choose_start == 1:
                 self.categorie()
                 if self.substitute_search():
@@ -338,8 +345,11 @@ Retrouver mes aliments substitués\n3 - Quitter\n Veuillez saisir un chiffre:")
                 else:
                     continue
 
+            #to end the program
             elif self.choose_start == 3:
                 application_loop = False
+            #to find products saved
+
             else:
                 self.object.find_saved_product()
-        print("Au revoir")
+        print("\nA bientôt")
