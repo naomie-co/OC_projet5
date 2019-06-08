@@ -9,4 +9,5 @@ CATEGORIES = ['Snacks', 'Boissons', 'Snacks sucrés', 'Plats préparés', \
 'Yaourts brassés', 'Taboulés', 'Sodas au cola', 'Beurres demi-sel', \
 'Pizzas et tartes surgelées', 'Chewing-gum', 'Houmous']
 
+#Used to limit the categories choice
 NB_CATEGORIES = len(CATEGORIES) + 1
