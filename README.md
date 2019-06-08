@@ -11,7 +11,7 @@ Une fois l'environnement virtuel créé, lancez l'installation de dépendances a
     pip install -r requirements.txt 
 
 ## 2 - Création du fichier permettant la connexion. 
-L’exécution de la parties MySql du fichier nécessite la création au préalable d’un fichier ** DB_info.py ** qui contient les données de connexion suivantes : 
+L’exécution de la parties MySql du fichier nécessite la création au préalable d’un fichier **DB_info.py** qui contient les données de connexion suivantes : 
 
     * HOST = "YourHost"
     * USER = "YourUserName"
