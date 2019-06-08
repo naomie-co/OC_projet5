@@ -81,6 +81,5 @@ def create_db_and_tables():
         cursor.execute(sql)
     connection.commit()
 
-
 if __name__ == '__main__':
     create_db_and_tables()
