@@ -8,7 +8,6 @@ PASSWORD = "YourPassword"
 DB = "off"
 """
 import pymysql
-
 import DB_info
 import constantes
 

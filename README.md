@@ -13,17 +13,19 @@ Une fois l'environnement virtuel créé, lancez l'installation de dépendances a
 ## 2 - Création du fichier permettant la connexion. 
 L’exécution de la parties MySql du fichier nécessite la création au préalable d’un fichier **DB_info.py** qui contient les données de connexion suivantes : 
 
-    * HOST = "YourHost"
-    * USER = "YourUserName"
-    * PASSWORD = "YourPassword"
-    * DB = "off"
+    HOST = "YourHost"
+    USER = "YourUserName"
+    PASSWORD = "YourPassword"
+    DB = "off"
 
 ## 3 - Lancer le fichier main.py
 
 L'utilisateur est sur le terminal. Ce dernier lui affiche les choix suivants :
 
 1 - Quel aliment souhaitez-vous remplacer ? 
+
 2 - Retrouver mes aliments substitués.
+
 3 - Quitter le programme.
 
 L'utilisateur sélectionne 1. Le programme pose les questions suivantes à l'utilisateur et ce dernier sélectionne les réponses :

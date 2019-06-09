@@ -4,7 +4,6 @@
 import warnings
 import pymysql
 import requests
-
 import DB_info
 import database
 import constantes
@@ -47,6 +46,7 @@ class API:
             except KeyError:
                 pass
         return data
+
 
 class DB:
     """The DB (database) class aims to interact with the database and tables
@@ -294,7 +294,7 @@ Retrouver mes aliments substitués\n3 - Quitter\n Veuillez saisir un chiffre:")
                 #print the products's list and to store ids possible for
                 #products's selected
                 id_products_selected = [elt[0] for elt in range_id]
-                print("Sélectionnez le produit en indiquant son chiffre pour\
+                print("Sélectionnez le produit en indiquant son chiffre pour \
 trouver un produit mieux noté:")
                 self.product_num = input()
                 self.product_num = int(self.product_num)
